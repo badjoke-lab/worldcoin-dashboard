@@ -1,14 +1,23 @@
 // WLD Price を Coingecko API から取得
 async function getWLDPrice() {
-  const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=worldcoin&vs_currencies=usd');
-  const data = await response.json();
-  return data.worldcoin.usd;
+  try {
+    const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=worldcoin&vs_currencies=usd');
+    const data = await response.json();
+    return data.worldcoin.usd;
+  } catch (error) {
+    console.error("Error fetching WLD Price:", error);
+    return null;
+  }
 }
 
 // 取得した価格を更新
 async function updateWLDPrice() {
   const price = await getWLDPrice();
-  document.getElementById('wld-price').innerText = `$${price}`;
+  if (price !== null) {
+    document.getElementById('wld-price').innerText = `$${price}`;
+  } else {
+    document.getElementById('wld-price').innerText = 'Failed to load';
+  }
 }
 
 // 60秒ごとに価格を更新
@@ -17,17 +26,26 @@ setInterval(updateWLDPrice, 60000);
 // 初回ロード時にも更新
 updateWLDPrice();
 
-// 仮のデータ（World ID）
+// 仮のデータ取得（World ID）
 async function getWorldIDRegistrations() {
-  const response = await fetch('https://api.dune.com/api/v1/world-id/registrations');
-  const data = await response.json();
-  return data.totalRegistrations; // 仮のフィールド名
+  try {
+    const response = await fetch('https://api.dune.com/api/v1/your-correct-endpoint'); // 正しいエンドポイントに修正
+    const data = await response.json();
+    return data.totalRegistrations; // 仮のフィールド名
+  } catch (error) {
+    console.error("Error fetching World ID registrations:", error);
+    return null;
+  }
 }
 
 // 登録数を更新
 async function updateWorldID() {
   const totalRegistrations = await getWorldIDRegistrations();
-  document.getElementById('world-id-registrations').innerText = totalRegistrations;
+  if (totalRegistrations !== null) {
+    document.getElementById('world-id-registrations').innerText = totalRegistrations;
+  } else {
+    document.getElementById('world-id-registrations').innerText = 'Failed to load';
+  }
 }
 
 // 60秒ごとに更新
@@ -38,6 +56,12 @@ updateWorldID();
 
 // スパークラインを描画する関数（仮のデータ）
 function drawSparkline(data) {
+  const container = document.getElementById('sparkline-container');
+  if (!container) {
+    console.error("Target container for sparkline not found.");
+    return;
+  }
+
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   const width = 100;
   const height = 20;
@@ -51,7 +75,7 @@ function drawSparkline(data) {
   line.setAttribute('fill', 'transparent');
   svg.appendChild(line);
 
-  return svg;
+  container.appendChild(svg); // ここでappendChildを実行
 }
 
 // 仮データ
