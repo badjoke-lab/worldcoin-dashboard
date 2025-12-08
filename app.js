@@ -29,7 +29,8 @@ updateWLDPrice();
 // 仮のデータ取得（World ID）
 async function getWorldIDRegistrations() {
   try {
-    const response = await fetch('https://api.dune.com/api/v1/your-correct-endpoint'); // 正しいエンドポイントに修正
+    // 正しいAPIエンドポイントに修正
+    const response = await fetch('https://example.com/api/world-id/registrations'); // 仮のURL
     const data = await response.json();
     return data.totalRegistrations; // 仮のフィールド名
   } catch (error) {
