@@ -1,0 +1,28 @@
+/* Light mode variables */
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+}
+
+/* Dark mode variables */
+html[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --text: #e5e5e5;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: sans-serif;
+}
+
+header, main, footer {
+  padding: 20px;
+}
+
+.card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+}
