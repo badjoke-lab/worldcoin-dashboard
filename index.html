@@ -1,56 +1,82 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Worldcoin Stats Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f4f4f9; }
+    .card { border: 1px solid #ddd; padding: 20px; margin: 20px; background: white; }
+    #main { display: flex; flex-wrap: wrap; }
+    .card { width: 30%; box-sizing: border-box; margin: 10px; }
+  </style>
 </head>
-
 <body>
 
   <header>
     <h1>Worldcoin Stats Dashboard</h1>
-    <button id="themeToggle">◐</button>
   </header>
 
-  <main>
+  <div id="main">
+    <!-- WLD Price -->
+    <div class="card">
+      <h2>WLD Price</h2>
+      <p id="wld-price">Loading...</p>
+    </div>
 
-    <section id="cards">
-      <div class="card" id="worldID">
-        <h2>World ID Registrations</h2>
-        <p id="world-id-registrations">Loading...</p>
-      </div>
-      <div class="card" id="orbs">
-        <h2>Orb Deployment</h2>
-        <p id="orb-deployment">Loading...</p>
-      </div>
-      <div class="card" id="holders">
-        <h2>WLD Holders</h2>
-        <p id="wld-holders">Loading...</p>
-      </div>
-      <div class="card" id="price">
-        <h2>WLD Price</h2>
-        <p id="wld-price">Loading...</p>
-      </div>
-      <div class="card" id="tps">
-        <h2>Worldchain TPS</h2>
-        <p id="worldchain-tps">Loading...</p>
-      </div>
-    </section>
+    <!-- TPS -->
+    <div class="card">
+      <h2>TPS</h2>
+      <p id="tps">Loading...</p>
+    </div>
 
-    <section id="insights">
-      <p>Insights will appear here.</p>
-    </section>
+    <!-- WLD Holder and Circulating Supply -->
+    <div class="card">
+      <h2>WLD Holder Count</h2>
+      <p id="wld-holder">Loading...</p>
+    </div>
 
-    <!-- スパークラインの表示用コンテナ -->
-    <div id="sparkline-container"></div>
+    <div class="card">
+      <h2>WLD Circulating Supply</h2>
+      <p id="wld-supply">Loading...</p>
+    </div>
 
-  </main>
+    <!-- Orb Count -->
+    <div class="card">
+      <h2>Orb Count</h2>
+      <p id="orb-count">Loading...</p>
+    </div>
 
-  <footer>
-    <p>Data sources: Dune / Etherscan / Coingecko / Worldcoin API</p>
-  </footer>
+    <!-- World ID Registrations -->
+    <div class="card">
+      <h2>World ID Registrations</h2>
+      <p id="world-id-registrations">Loading...</p>
+    </div>
+
+    <!-- Network Status -->
+    <div class="card">
+      <h2>Network Status</h2>
+      <p id="network-status">Loading...</p>
+    </div>
+
+    <!-- Exchange Data -->
+    <div class="card">
+      <h2>Exchange Data</h2>
+      <p id="exchange-data">Loading...</p>
+    </div>
+
+    <!-- Social Media Analysis -->
+    <div class="card">
+      <h2>Social Media Analysis</h2>
+      <p id="social-media-analysis">Loading...</p>
+    </div>
+
+    <!-- Market Insights -->
+    <div class="card">
+      <h2>Market Insights</h2>
+      <p id="market-insights">Loading...</p>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>
